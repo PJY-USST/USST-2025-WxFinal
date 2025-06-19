@@ -1,0 +1,7 @@
+.a-search-bar{
+  height: 40px;
+  width: 80%;
+  border-radius: 20px;
+  border: gray solid 1px;
+  line-height: 40px;
+}

@@ -5,14 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageid:'0',
+    v_m_nav_id:'0',
+    v_data:[{
 
+    }],
+
+    a_search_text:"点击搜索",
+  },
+
+  onTaptop:function(e){
+    console.log("hot-"+e.currentTarget.id)
+    this.setData({
+      pageid:e.currentTarget.id
+    })
+  },
+  onTap_v_m:function(e){
+    console.log("hot-v-"+e.currentTarget.id)
+    this.setData({
+      v_m_nav_id:e.currentTarget.id
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    
   },
 
   /**
@@ -68,17 +87,5 @@ Page({
    */
   onShareAppMessage() {
 
-  }
-})
-Component({
-  pageLifetimes: {
-    show() {
-      if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 0
-        })
-      }
-    }
   }
 })

@@ -30,7 +30,7 @@ Page({
       this.getTabBar()) {
       this.getTabBar().setData({
         //唯一标识（其它设置不同的整数）  
-        selected: 0
+        selected: 1
       })
     }
   },
@@ -68,17 +68,5 @@ Page({
    */
   onShareAppMessage() {
 
-  }
-})
-Component({
-  pageLifetimes: {
-    show() {
-      if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 0
-        })
-      }
-    }
   }
 })

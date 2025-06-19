@@ -1,0 +1,25 @@
+<view class="main-container">
+  <swiper class="v-headline" circular="true" indicator-dots="true" autoplay="true">
+    <swiper-item class="v-h-d" style="background-color: aqua;">
+      <image class="v-h-d-i" src="{{}}" />
+    </swiper-item>
+    <swiper-item class="v-h-d" style="background-color: aliceblue;">
+    </swiper-item>
+    <swiper-item class="v-h-d" style="background-color: violet;">
+    </swiper-item>
+  </swiper>
+  <view class="v-m-nav-c">
+    <view class="v-m-nav-i-{{v_m_nav_id=='0'?'active':'de'}}" id='0' bind:tap="onTap_v_m">综合</view>
+    <view class="v-m-nav-i-{{v_m_nav_id=='1'?'active':'de'}}" id='1' bind:tap="onTap_v_m">实时</view>
+  </view>
+  <swiper class="v-sub-root" current="{{v_m_nav_id}}">
+    <swiper-item>
+    <!-- 进入下一级页面 -->
+      <include src="vediosub_a.wxml" />
+    </swiper-item>
+    <swiper-item>
+    <!-- 进入下一级页面 -->
+      <include src="vediosub_b.wxml" />
+    </swiper-item>
+  </swiper>
+</view>

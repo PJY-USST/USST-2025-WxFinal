@@ -1,2 +1,15 @@
 <!--pages/main/main.wxml-->
-<text>pages/main/main.wxml</text>
+<view class="top-nav">
+  <view class="{{pageid=='0'?'active':'de'}}" id='0' bind:tap="onTaptop">视频</view>
+  <view class="{{pageid=='1'?'active':'de'}}" id='1' bind:tap="onTaptop">音乐</view>
+</view>
+<swiper class="sub-root" current="{{pageid}}">
+  <swiper-item>
+  <!-- 进入下一级页面 -->
+    <include class="vedio-root" src="vedioroot.wxml" />
+  </swiper-item>
+  <swiper-item>
+  <!-- 进入下一级页面 -->
+    <include class="vedio-root" src="musicroot.wxml" />
+  </swiper-item>
+</swiper>
