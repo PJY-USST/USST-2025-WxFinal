@@ -6,10 +6,10 @@ Page({
    */
   data: {
     pageid:'0',
+    js_url:"",
+    v_url:"",
     v_m_nav_id:'0',
-    v_data:[{
-
-    }],
+    v_hot_data:{},
 
     a_search_text:"点击搜索",
   },
@@ -31,7 +31,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+    this.getHotV();
   },
 
   /**
@@ -87,5 +87,39 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+
+  //获取视频列表
+  getHotV(){
+    const jsurl = "https://json.xn--10v.link:3000/get-latest-json";
+    wx.request({
+      url: jsurl,
+      success:(res) => {
+        var js=res.data.filename;
+        this.setData({
+          js_url:js.toString()
+        });
+        var url = "https://online.xn--10v.link/rank/"+ this.data.js_url;
+        this.setData({
+          v_url:url
+        });
+        console.log(url);
+        wx.request({
+          url:this.data.v_url,
+          success:(res) => {
+            this.setData({
+              v_hot_data:res.data,
+            });
+            console.log(this.data.v_hot_data);
+          },
+          fail:(err) =>{
+            console.log("err:",err);
+          }
+        });
+      },
+      fail: (err) => {
+        console.log("err:",err);
+      },
+    });
+  },
 })

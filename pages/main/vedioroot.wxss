@@ -37,3 +37,14 @@
 .v-sub-root{
   width: 100%;
 }
+.v-sub-container{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.v-sub-list{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
