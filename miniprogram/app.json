@@ -3,9 +3,9 @@
     "pages/main/main",
     "pages/user/user",
     "pages/new/new",
-
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/user_his/user_his"
   ],
   "window": {
     "navigationBarTextStyle": "black",

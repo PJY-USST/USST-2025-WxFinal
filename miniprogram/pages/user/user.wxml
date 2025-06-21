@@ -4,7 +4,7 @@
   <view class="profile">
     <image 
       class="avatar" 
-      src="/images/avatar.png" 
+      src="{{avatarUrl}}" 
       bindtap="chooseAvatar"
     ></image>
     <view class="profile-info">
@@ -26,7 +26,7 @@
       <view class="menu-icon">
         <image src="/images/collect.png"></image> <!-- 收藏图标 -->
       </view>
-      <view class="menu-text">收藏</view>
+      <view class="menu-text" bind:tap="onTapHistory">历史</view>
       <image class="arrow" src="/images/arrow.png"></image>
     </view>
 
