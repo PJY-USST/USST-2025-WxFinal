@@ -6,13 +6,13 @@ Component({
     selectedColor: "#ff77aa",
     list: [{
       pagePath: "/pages/main/main",
-      iconPath: "/src/house_0.png",
-      selectedIconPath: "/src/house_2.png",
+      iconPath: "/src/house_00.png",
+      selectedIconPath: "/src/house_11.png",
       text: "首页"
     }, {
       pagePath: "/pages/user/user",
-      // iconPath: "/image/icon_API.png",
-      // selectedIconPath: "/image/icon_API_HL.png",
+      iconPath: "/src/me_0.png",
+      selectedIconPath: "/src/me_1.png",
       text: "我的"
     }]
   },
