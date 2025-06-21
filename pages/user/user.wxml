@@ -1,2 +1,42 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<!-- 微信「我」页面结构 -->
+<view class="mine-container">
+  <!-- 顶部用户信息区 -->
+  <view class="profile">
+    <image 
+      class="avatar" 
+      src="/images/avatar.png" 
+      bindtap="chooseAvatar"
+    ></image>
+    <view class="profile-info">
+      <view class="nickname">*</view>
+      <view class="wechat-id">微信号：zsr04080424ghc</view>
+      <view class="status">
+        <text class="status-tag">+ 状态</text>
+        <text class="friend-tip">等6个朋友</text>
+        <text class="dot">●</text>
+      </view>
+    </view>
+    <image class="qrcode" src="/images/qrcode.png"></image> <!-- 二维码图标 -->
+  </view>
+
+  <!-- 功能菜单区（仅保留「收藏」「设置」） -->
+  <view class="menu-list">
+    <!-- 收藏 -->
+    <view class="menu-item">
+      <view class="menu-icon">
+        <image src="/images/collect.png"></image> <!-- 收藏图标 -->
+      </view>
+      <view class="menu-text">收藏</view>
+      <image class="arrow" src="/images/arrow.png"></image>
+    </view>
+
+    <!-- 设置 -->
+    <view class="menu-item">
+      <view class="menu-icon">
+        <image src="/images/setting.png"></image> <!-- 设置图标 -->
+      </view>
+      <view class="menu-text">设置</view>
+      <image class="arrow" src="/images/arrow.png"></image>
+    </view>
+  </view>
+</view>

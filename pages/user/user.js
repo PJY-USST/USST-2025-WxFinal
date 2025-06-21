@@ -1,72 +1,36 @@
-// pages/user/user.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        //唯一标识（其它设置不同的整数）  
-        selected: 1
-      })
+    // 选择头像（相册/拍摄）
+    chooseAvatar() {
+      wx.showActionSheet({
+        itemList: ['从相册选择', '拍摄照片'],
+        success: (res) => {
+          if (res.tapIndex === 0) {
+            // 相册选择
+            wx.chooseImage({
+              count: 1,
+              sizeType: ['original', 'compressed'],
+              sourceType: ['album'],
+              success: (res) => {
+                // 此处可添加「上传头像到服务器」逻辑
+                console.log('选择的头像地址：', res.tempFilePaths[0]);
+              }
+            });
+          } else if (res.tapIndex === 1) {
+            // 拍摄照片
+            wx.chooseImage({
+              count: 1,
+              sizeType: ['original', 'compressed'],
+              sourceType: ['camera'],
+              success: (res) => {
+                // 此处可添加「上传头像到服务器」逻辑
+                console.log('拍摄的头像地址：', res.tempFilePaths[0]);
+              }
+            });
+          }
+        },
+        fail: (err) => {
+          console.error('ActionSheet 调用失败：', err);
+        }
+      });
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
-})
+  });
