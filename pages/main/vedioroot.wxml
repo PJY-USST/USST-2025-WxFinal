@@ -3,7 +3,7 @@
   <text style="color: #ffffff; position: absolute;top:10px;left: 40px;z-index: 2; background-color: #0099883a;">万人在线中！</text>
   <swiper class="v-headline" circular="true" indicator-dots="true" autoplay="true">
     <block wx:key="h_index" wx:for="{{v_hot_data}}" wx:for-item="item">
-      <block wx:if="{{item.count_num > 10000}}">
+      <block wx:if="{{item.count_num >= 10000}}">
         <swiper-item class="v-h-d" bind:tap="onTap_v_d" id='{{index}}' style="background-color: aqua;">
           <image class="v-h-d-i" src="{{item.pic}}" mode="aspectFill" />
         </swiper-item>
