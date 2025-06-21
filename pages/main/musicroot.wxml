@@ -1,6 +1,70 @@
 <!-- 首页>>音乐类 -->
-<view class="main-container">
+<scroll-view class="main-container" scroll-y="false">
   <view class="a-search-bar">
     <text style="margin-left: 20px; color: rgba(128, 128, 128, 0.5);">{{a_search_text}}</text>
   </view>
-</view>
+  <swiper class="a-banner" indicator-dots="true">
+    <block wx:for="{{m_banners}}">
+      <swiper-item class="a-banner-i">
+        <text style="position: absolute; left: 25px; color: #ffffff; text-shadow: 1px 1px 2px #000000; font-size: large;">{{item.typeTitle}}</text>
+        <image style="height: 100%;" mode="aspectFit" src="{{item.imageUrl}}" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="a-new-rank">
+    <view style="display: flex; flex-direction: row;">
+      <view class="a-new-rank-title">新歌榜 Top10
+      </view>
+      <view style="line-height: 46px; position: absolute; right: 5%;font-weight: 900;color: #ff6677">></view>
+    </view>
+    <scroll-view class="a-new-rank-c" scroll-y="false">
+      <block wx:for="{{m_new_rank}}">
+        <block wx:if="{{index < 10}}">
+          <view class="a-new-song-c" bind:tap="onTapSongNew" id="{{index}}">
+            <image mode="aspectFill" class="a-new-song-pic" src="{{item.al.picUrl}}" />
+            <view class="a-new-song-d">
+              <view class="a-new-song-title">{{item.al.name}}
+              </view>
+              <view class="a-new-song-owner">{{item.ar[0].name}}
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </scroll-view>
+    <view style="display: flex; flex-direction: row;">
+      <view class="a-new-rank-title">飙升榜 Top10
+      </view>
+      <view style="line-height: 46px; position: absolute; right: 5%;font-weight: 900;color: #ff6677">></view>
+    </view>
+    <scroll-view class="a-new-rank-c" scroll-y="false">
+      <block wx:for="{{m_new_rank}}">
+        <block wx:if="{{index < 10}}">
+          <view class="a-new-song-c" bind:tap="onTapSongNew" id="{{index}}">
+            <image mode="aspectFill" class="a-new-song-pic" src="{{item.al.picUrl}}" />
+            <view class="a-new-song-d">
+              <view class="a-new-song-title">{{item.al.name}}
+              </view>
+              <view class="a-new-song-owner">{{item.ar[0].name}}
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+    </scroll-view>
+  </view>
+  <view style="width: 100%; text-align: center;">---到底了---</view>
+  <view class="a-player" style="position: sticky; bottom:0px;">
+      <block wx:if="{{m_playing_pic}}">
+        <view class="a-new-song-c">
+          <image mode="aspectFill" class="a-new-song-pic" src="{{m_playing_pic}}" />
+          <view class="a-new-song-d">
+            <view class="a-new-song-title">{{m_playing_title}}
+            </view>
+            <view class="a-new-song-owner">正在播放
+            </view>
+          </view>
+        </view>
+      </block>
+  </view>
+</scroll-view>

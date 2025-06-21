@@ -1,4 +1,5 @@
 // pages/main/main.js
+import {baseUrl} from "../../service/config.js";
 Page({
   /**
    * 页面的初始数据
@@ -20,6 +21,13 @@ Page({
     v_head_url: ["", "", ""],
 
     a_search_text: "点击搜索",
+    m_new_rank:[],
+    m_cop_rank:[],
+    m_upp_rank:[],
+    m_banners:[],
+    m_playing_pic:"",
+    m_playing_title:"",
+
   },
 
   onTaptop: function (e) {
@@ -36,7 +44,7 @@ Page({
   },
   onTap_v_d: function (e) {
     console.log("goto-" + e.currentTarget.id);
-    const url = "https://www.bilibili.com/video/" + e.currentTarget.id;
+    const url = baseUrl["v_play"] + e.currentTarget.id;
     this.setData({
       v_playing_url: url,
       v_playing_bv: e.currentTarget.id,
@@ -56,24 +64,26 @@ Page({
     });
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  onTapSongNew:function(e){
+    console.log("Song playing hot-"+e.currentTarget.id);
+    var a = wx.getStorageSync('a_new_data').tracks[e.currentTarget.id];
+    wx.setStorageSync('a_playing', a);
+    console.log(typeof(a));
+    this.setData({
+      m_playing_pic:a.al.picUrl,
+      m_playing_title:a.name,
+    })
+  },
+
   onLoad(options) {
+    // console.log(typeof(baseUrl["v_play"]));
     wx.clearStorageSync();
     this.getHotV();
+    this.getHotM();
+    this.getUPM();
+    this.getBannerM();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
@@ -84,48 +94,13 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
-
   onFinishget() {
     console.log("Vedio data got");
   },
 
   //获取视频列表
   getHotV() {
-    const jsurl = "https://json.xn--10v.link:3000/get-latest-json";
+    const jsurl = baseUrl["v_json"];
     wx.request({
       url: jsurl,
       success: (res) => {
@@ -133,7 +108,7 @@ Page({
         this.setData({
           js_url: js.toString()
         });
-        var url = "https://online.xn--10v.link/rank/" + this.data.js_url;
+        var url = baseUrl["v_hot"] + this.data.js_url;
         this.setData({
           v_url: url
         });
@@ -159,4 +134,49 @@ Page({
       },
     });
   },
+  getHotM(id=3779629){
+    wx.request({
+      url: baseUrl["m_root"]+"/playlist/detail",
+      data:{
+        id,
+      },
+      success:(res) =>{
+        wx.setStorageSync('a_new_data', res.data.playlist);
+        this.setData({
+          m_new_rank:res.data.playlist.tracks,
+        })
+        console.log(this.data.m_new_rank);
+      },
+    })
+  },
+  getUPM(id=19723756){
+    wx.request({
+      url: baseUrl["m_root"]+"/playlist/detail",
+      data:{
+        id,
+      },
+      success:(res) =>{
+        wx.setStorageSync('a_upp_data', res.data.playlist);
+        this.setData({
+          m_upp_rank:res.data.playlist.tracks,
+        })
+        console.log(this.data.m_upp_rank);
+      },
+    })
+  },
+  getBannerM(type=0){
+    wx.request({
+      url: baseUrl["m_root"]+"/banner",
+      data:{
+        type,
+      },
+      success:(res) =>{
+        wx.setStorageSync('a_banner_data', res.data.banners);
+        this.setData({
+          m_banners:res.data.banners,
+        })
+        console.log(this.data.m_banners);
+      },
+    })
+  }
 })
