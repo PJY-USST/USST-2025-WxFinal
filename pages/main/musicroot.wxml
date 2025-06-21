@@ -1,3 +1,4 @@
+<!-- 首页>>音乐类 -->
 <view class="main-container">
   <view class="a-search-bar">
     <text style="margin-left: 20px; color: rgba(128, 128, 128, 0.5);">{{a_search_text}}</text>

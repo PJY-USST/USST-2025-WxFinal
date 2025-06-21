@@ -5,14 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    v_playing_url:"",
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    var url=wx.getStorageSync('v_play_url');
+    this.setData({
+      v_playing_url:url,
+    });
   },
 
   /**

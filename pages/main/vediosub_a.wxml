@@ -1,1 +1,14 @@
-<text>综合热门视频</text>
+<!-- 首页>>视频>>正在播放 -->
+<view class="now-c">
+  <text hidden="{{v_playing_url}}" style="font-weight: 700; font-size: xx-large; color: violet; margin-top: 50px;">{{v_playing_url===""?"没有东西哦~":""}}</text>
+  <block wx:if="{{v_playing_url}}">
+    <view class="now-v">
+      <image style="width: 80%; border-radius: 20px;" mode="aspectFit" src="{{v_hot_data[v_playing_bv].pic}}"></image>
+      <text class="now-title">{{v_hot_data[v_playing_bv].title}}</text>
+      <view class="now-up">
+      UP主：{{v_hot_data[v_playing_bv].owner}}
+      </view>
+      <button type="primary" plain="true" style="margin-top: 20px;" bind:tap="onTap_v_look" id="{{v_playing_bv}}">跳转到视频</button>
+    </view>
+  </block>
+</view>

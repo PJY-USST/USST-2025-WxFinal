@@ -1,9 +1,20 @@
-<view class="v-sub-container">
-  <view class="v-sub-list">
-    <block wx:key="{{v_now_index}}" wx:for="{{v_now_data}}">
-      
-    </block>
-  </view>
-  <view class="v-sub-list">
-  </view>
-</view>
+<!-- 首页>>视频>>排行榜 -->
+<scroll-view class="v-sub-container" scroll-y="true">
+  <block wx:key="v_index" wx:for="{{v_hot_data}}">
+    <view class="v-d-c" bind:tap="onTap_v_d" id='{{index}}'>
+      <image src="{{item.pic}}" style="width: 40%; height: auto; border-radius: 10px;" mode="aspectFill" />
+      <view class="v-d-d-c">
+        <view class="v-title">{{item.title}}</view>
+        <view class="v-count">正在观看：{{item.online_count}} 人</view>
+        <view class="v-owner">UP主：{{item.owner}}</view>
+        <view class="v-d-i">
+          播放：
+          <view>{{item.view}}</view>
+          <view style="width: 7px;"></view>
+          弹幕：
+          <view>{{item.danmaku}}</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</scroll-view>

@@ -1,4 +1,4 @@
-<!--pages/main/main.wxml-->
+<!--首页root-->
 <view class="top-nav">
   <view class="{{pageid=='0'?'active':'de'}}" id='0' bind:tap="onTaptop">视频</view>
   <view class="{{pageid=='1'?'active':'de'}}" id='1' bind:tap="onTaptop">音乐</view>

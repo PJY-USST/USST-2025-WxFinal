@@ -3,11 +3,11 @@ Component({
   data: {
     selected: 0,
     color: "#7A7E83",
-    selectedColor: "#3cc51f",
+    selectedColor: "#ff77aa",
     list: [{
       pagePath: "/pages/main/main",
-      // iconPath: "/image/icon_component.png",
-      // selectedIconPath: "/image/icon_component_HL.png",
+      iconPath: "/src/house_0.png",
+      selectedIconPath: "/src/house_2.png",
       text: "首页"
     }, {
       pagePath: "/pages/user/user",

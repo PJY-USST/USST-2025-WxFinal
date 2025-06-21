@@ -1,25 +1,27 @@
+<!-- 首页>>视频类 -->
 <view class="main-container">
+  <text style="color: #ffffff; position: absolute;top:10px;left: 40px;z-index: 2; background-color: #0099883a;">万人在线中！</text>
   <swiper class="v-headline" circular="true" indicator-dots="true" autoplay="true">
-    <swiper-item class="v-h-d" style="background-color: aqua;">
-      <image class="v-h-d-i" src="{{}}" />
-    </swiper-item>
-    <swiper-item class="v-h-d" style="background-color: aliceblue;">
-    </swiper-item>
-    <swiper-item class="v-h-d" style="background-color: violet;">
-    </swiper-item>
+    <block wx:key="h_index" wx:for="{{v_hot_data}}" wx:for-item="item">
+      <block wx:if="{{item.count_num > 10000}}">
+        <swiper-item class="v-h-d" bind:tap="onTap_v_d" id='{{index}}' style="background-color: aqua;">
+          <image class="v-h-d-i" src="{{item.pic}}" mode="aspectFill" />
+        </swiper-item>
+      </block>
+    </block>
   </swiper>
   <view class="v-m-nav-c">
-    <view class="v-m-nav-i-{{v_m_nav_id=='0'?'active':'de'}}" id='0' bind:tap="onTap_v_m">综合</view>
-    <view class="v-m-nav-i-{{v_m_nav_id=='1'?'active':'de'}}" id='1' bind:tap="onTap_v_m">实时</view>
+    <view class="v-m-nav-i-{{v_m_nav_id=='0'?'active':'de'}}" id='0' bind:tap="onTap_v_m">实时排行</view>
+    <view class="v-m-nav-i-{{v_m_nav_id=='1'?'active':'de'}}" id='1' bind:tap="onTap_v_m">正在播放</view>
   </view>
   <swiper class="v-sub-root" current="{{v_m_nav_id}}">
     <swiper-item>
-    <!-- 进入下一级页面 -->
-      <include src="vediosub_a.wxml" />
+      <!-- 进入下一级页面 -->
+      <include src="vediosub_b.wxml" />
     </swiper-item>
     <swiper-item>
-    <!-- 进入下一级页面 -->
-      <include src="vediosub_b.wxml" />
+      <!-- 进入下一级页面 -->
+      <include src="vediosub_a.wxml" />
     </swiper-item>
   </swiper>
 </view>

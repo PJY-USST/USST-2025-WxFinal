@@ -32,8 +32,9 @@
   margin-right: 15%;
 }
 .sub-root{
-  height: 100vh;
+  height: 83vh;
   position: relative;
   margin-top: 30px;
   padding-bottom: 96px;
+  overflow: hidden;
 }
