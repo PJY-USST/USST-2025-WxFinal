@@ -8,8 +8,8 @@
       bindtap="chooseAvatar"
     ></image>
     <view class="profile-info">
-      <view class="nickname">*</view>
-      <view class="wechat-id">微信号：zsr04080424ghc</view>
+      <view class="nickname" bind:tap="chooseID">{{userID}}</view>
+      <!-- <view class="wechat-id">微信号：zsr04080424ghc</view> -->
       <view class="status">
         <text class="status-tag">+ 状态</text>
         <text class="friend-tip">等6个朋友</text>
@@ -35,7 +35,7 @@
       <view class="menu-icon">
         <image src="/images/setting.png"></image> <!-- 设置图标 -->
       </view>
-      <view class="menu-text">设置</view>
+      <view class="menu-text" bind:tap="onLogout">退出登录</view>
       <image class="arrow" src="/images/arrow.png"></image>
     </view>
   </view>

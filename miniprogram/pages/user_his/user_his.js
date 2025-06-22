@@ -1,66 +1,44 @@
 // pages/user_his/user_his.js
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    uid:"",
+    his_data:[],
+    v_data:{},
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
-
+    this.setData({
+      uid:wx.getStorageSync('uid'),
+      v_data:wx.getStorageSync('v_data')
+    })
+    setTimeout(this.timeout,500);
+    this.FromCloud(this.data.uid);
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  timeout(){},
+  FromCloud(uid) {
+    if (uid === "") {
+      console.error("uid为空 from<main.js>");
+      return -1;
+    }
+    const data = {
+      uid: uid,
+    }
+    console.log("查询", data);
+    wx.cloud.callFunction({
+      name:"Upload-To-DB",
+      data: {
+        action: "findData",
+        params: data,
+      },
+    }).then(res=>{
+      console.log('调用成功 from<user_his.js>', res.result.data);
+      this.setData({
+        his_data:res.result.data,
+      })
+    }).catch(err => {
+      console.error('调用失败 from<user_his.js>', err);
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

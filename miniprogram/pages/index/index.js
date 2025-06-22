@@ -3,7 +3,7 @@ const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia0
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: '点击登录',
     userInfo: {
       avatarUrl: defaultAvatarUrl,
       nickName: '',
@@ -32,6 +32,22 @@ Page({
       "userInfo.nickName": nickName,
       hasUserInfo: nickName && avatarUrl && avatarUrl !== defaultAvatarUrl,
     })
+  },
+  onLoad(){
+    wx.setStorageSync('uid', this.data.userInfo.nickName);
+    wx.setStorageSync('avatar_url', this.data.userInfo.avatarUrl);
+  },
+  onLogin(e){
+    console.log(this.data.userInfo)
+    wx.setStorageSync('uid', this.data.userInfo.nickName);
+    wx.setStorageSync('avatar_url', this.data.userInfo.avatarUrl);
+    wx.showLoading({
+      title: '登陆中',
+    })
+    setTimeout(this.timeback,2000)//内存写入不快，等待一段时间以确保缓存OK
+  },
+  timeback(){
+    wx.navigateBack()
   },
   getUserProfile(e) {
     // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗

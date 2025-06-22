@@ -20,8 +20,8 @@
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </block>
     </view>
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
+    <view wx:if="{{userInfo.nickName}}" class="usermotto">
+      <button class="user-motto" bind:tap="onLogin">{{motto}}</button>
     </view>
   </view>
 </scroll-view>

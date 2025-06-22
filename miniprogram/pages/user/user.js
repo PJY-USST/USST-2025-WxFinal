@@ -1,7 +1,8 @@
 Page({
   data:
   {
-    avatarUrl:"/images/avatar.png",
+    avatarUrl: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+    userID: "点击登录"
   },
   onShow() {
     if (typeof this.getTabBar === 'function' &&
@@ -11,9 +12,23 @@ Page({
         selected: 1
       })
     }
+    if (wx.getStorageSync('uid')) {
+      this.setData({
+        avatarUrl: wx.getStorageSync('avatar_url'),
+        userID: wx.getStorageSync('uid'),
+      })
+    }
+  },
+  onLoad(options) {
+    if (wx.getStorageSync('uid')) {
+      this.setData({
+        avatarUrl: wx.getStorageSync('avatar_url'),
+        userID: wx.getStorageSync('uid'),
+      })
+    }
   },
   // 选择头像（相册/拍摄）
-  chooseAvatar() {
+  chooseAvatar(e) {
     wx.showActionSheet({
       itemList: ['从相册选择', '拍摄照片'],
       success: (res) => {
@@ -27,7 +42,7 @@ Page({
               // 此处可添加「上传头像到服务器」逻辑
               console.log('选择的头像地址：', res.tempFilePaths[0]);
               this.setData({
-                avatarUrl:res.tempFilePaths[0],
+                avatarUrl: res.tempFilePaths[0],
               });
             }
           });
@@ -41,7 +56,7 @@ Page({
               // 此处可添加「上传头像到服务器」逻辑
               console.log('拍摄的头像地址：', res.tempFilePaths[0]);
               this.setData({
-                avatarUrl:res.tempFilePaths[0],
+                avatarUrl: res.tempFilePaths[0],
               });
             }
           });
@@ -52,7 +67,20 @@ Page({
       }
     });
   },
-  onTapHistory:function(e){
+  chooseID(e) {
+    wx.navigateTo({
+      url: '../index/index',
+    })
+  },
+  onLogout(e) {
+    this.setData({
+      avatarUrl: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+      userID: "点击登录"
+    })
+    wx.removeStorageSync('uid')
+    wx.removeStorageSync('avatar_url')
+  },
+  onTapHistory: function (e) {
     wx.navigateTo({
       url: '../user_his/user_his',
     })

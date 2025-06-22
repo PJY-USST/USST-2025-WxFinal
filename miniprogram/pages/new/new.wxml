@@ -1,2 +1,2 @@
 <!--播放页-->
-<web-view src="{{v_playing_url}}" bindload="bindload" binderror="binderror"></web-view>
+<web-view src="{{v_playing_url}}"></web-view>

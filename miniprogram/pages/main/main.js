@@ -212,7 +212,7 @@ Page({
       type: type,
       content: content,
     }
-    console.log(data);
+    console.log("上传", data);
     wx.cloud.callFunction({
       name: 'Upload-To-DB',
       data: {
@@ -220,11 +220,9 @@ Page({
         params: data,
       }
     }).then(res => {
-      console.log('调用成功 from<main.js>', res);
-      return 200;
+      console.log('调用成功 from<main.js>', res.result);
     }).catch(err => {
       console.error('调用失败 from<main.js>', err);
-      return 500;
     })
   },
   checkID() {
@@ -234,15 +232,15 @@ Page({
     }
     return true;
   },
-  ToLogin(){
+  ToLogin() {
     wx.showToast({
       title: '请先登录',
       duration: 2000,
-      icon:'error',
+      icon: 'error',
       mask: true,
-      success: (res) => {},
-      fail: (res) => {},
-      complete: (res) => {},
+      success: (res) => { },
+      fail: (res) => { },
+      complete: (res) => { },
     })
   },
 })

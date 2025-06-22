@@ -1,1 +1,45 @@
 /* pages/user_his/user_his.wxss */
+.container{
+  height: 100%;
+  padding: 0px;
+}
+.tag{
+  font-size: x-large;
+  width: 95%;
+  padding-left: 5%;
+  margin-bottom: 5px;
+  background-color: pink;
+  border-radius: 5px;
+}
+.vedio-c{
+  display: flex;
+  flex-direction: row;
+  border: 1px solid pink;
+  border-radius: 20px;
+  width: 98%;
+  margin-left: 1%;
+  background-color: #fa88440d;
+}
+.vedio-img{
+  border-radius: 20px;
+  height: 90px;
+  width: 160px;
+}
+.vedio-d{
+  margin-left: 10px;
+  width: 200px;
+}
+.vedio-title{
+  width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* font-size: small; */
+  font-weight: bold;
+  margin-bottom: 10px;
+  margin-top: 5px;
+}
+.vedio-view{
+  font-size: small;
+  color: gray;
+}

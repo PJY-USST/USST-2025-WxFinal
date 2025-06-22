@@ -1,2 +1,25 @@
 <!--pages/user_his/user_his.wxml-->
-<text>pages/user_his/user_his.wxml</text>
+<scroll-view class="container">
+  <!-- <view class="tag">视频</view> -->
+  <block wx:for="{{his_data}}" wx:key="content">
+    <block wx:if="{{item.type==1}}">
+      <view class="vedio-c">
+        <image class="vedio-img" mode="aspectFill" src="{{v_data[item.content].pic}}" />
+        <view class="vedio-d">
+          <view class="vedio-title">{{v_data[item.content].title}}</view>
+          <view class="vedio-view">UP主：{{v_data[item.content].owner}}</view>
+          <view class="vedio-view">播放：{{v_data[item.content].view}}</view>
+          <view class="vedio-view">时间：{{filters.truncate(item.createTime,10)}}</view>
+        </view>
+      </view>
+    </block>
+  </block>
+</scroll-view>
+<wxs module="filters">
+  function truncate(str, length) {
+    return str.substring(0, length);
+  }
+  module.exports = {
+    truncate: truncate
+  }
+</wxs>
