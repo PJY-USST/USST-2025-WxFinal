@@ -28,6 +28,9 @@
               <view class="a-new-song-owner">{{item.ar[0].name}}
               </view>
             </view>
+            <view style="position:absolute;right:30px;background-color: goldenrod; width: 30px; height: 30px;border-radius: 15px;text-align: center; margin-top: 20px;color: white;line-height: 30px;">
+              {{index+1}}
+            </view>
           </view>
         </block>
       </block>
@@ -38,9 +41,9 @@
       <view style="line-height: 46px; position: absolute; right: 5%;font-weight: 900;color: #ff6677">></view>
     </view>
     <scroll-view class="a-new-rank-c" scroll-y="false">
-      <block wx:for="{{m_new_rank}}">
+      <block wx:for="{{m_upp_rank}}">
         <block wx:if="{{index < 10}}">
-          <view class="a-new-song-c" bind:tap="onTapSongNew" id="{{index}}">
+          <view class="a-new-song-c" bind:tap="onTapSongUpp" id="{{index}}">
             <image mode="aspectFill" class="a-new-song-pic" src="{{item.al.picUrl}}" />
             <view class="a-new-song-d">
               <view class="a-new-song-title">{{item.al.name}}
@@ -48,23 +51,26 @@
               <view class="a-new-song-owner">{{item.ar[0].name}}
               </view>
             </view>
+            <view style="position:absolute;right:30px;background-color: goldenrod; width: 30px; height: 30px;border-radius: 15px;text-align: center; margin-top: 20px;color: white;line-height: 30px;">
+              {{index+1}}
+            </view>
           </view>
         </block>
       </block>
     </scroll-view>
   </view>
-  <view style="width: 100%; text-align: center;">---到底了---</view>
+  <view style="width: 100%; text-align: center; margin-bottom: 20px;">---到底了---</view>
   <view class="a-player" style="position: sticky; bottom:0px;">
-      <block wx:if="{{m_playing_pic}}">
-        <view class="a-new-song-c">
-          <image mode="aspectFill" class="a-new-song-pic" src="{{m_playing_pic}}" />
-          <view class="a-new-song-d">
-            <view class="a-new-song-title">{{m_playing_title}}
-            </view>
-            <view class="a-new-song-owner">正在播放
-            </view>
+    <block wx:if="{{m_playing_pic}}">
+      <view class="a-new-song-c-p">
+        <image mode="aspectFill" class="a-new-song-pic" src="{{m_playing_pic}}" />
+        <view class="a-new-song-d">
+          <view class="a-new-song-title">{{m_playing_title}}
+          </view>
+          <view class="a-new-song-owner-p">正在播放
           </view>
         </view>
-      </block>
+      </view>
+    </block>
   </view>
 </scroll-view>
